@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/02 18:15:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:54:17 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # include "./error_msg.h"
 
+#define YELLOW	"\e[33m"
+#define RED	"\e[31m"
+#define GREEN	"\e[32m"
+
 /******************************************************************************
 *                                 Structures                                  *
 ******************************************************************************/
@@ -40,13 +44,15 @@ typedef struct	s_parser
 
 
 /*----------Parser----------*/
-int		validate_parsing(t_parser parsing);
-void	parser(t_parser *parsing, int argc, char **argv);
+int		validate_parsing(t_parser parser);
+void	parsing(t_parser *parser, int argc, char **argv);
 
 
 /*----------Parser_utils----------*/
-int is_number(char *str);
-int	ft_atoi(char *str);
+int		is_number(char *str);
+int		ft_atoi(char *str);
+
+void	ft_void(void);
 
 
 #endif
