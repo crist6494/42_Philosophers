@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:45 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/02 18:11:54 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:56:53 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int is_number(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
-			return (1);
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_atoi(char *str)

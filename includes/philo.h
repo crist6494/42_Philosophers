@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/07 17:54:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:34:39 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 typedef struct	s_parser
 {
 	int return_value;
+	int	num_philosophers;
+	int	time_to_die;
+	int	time_to_eat;
+	int time_to_sleep;
+	int num_times_must_eat;
 }t_parser;
 
 
