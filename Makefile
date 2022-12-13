@@ -4,18 +4,18 @@ BOLD        = \033[1m
 UNDERLINE   = \033[4m
 BLACK       = \033[1;30m
 RED         = \033[31m
-GREEN       = \033[32m
+GREEN       = \033[32m 
 YELLOW      = \033[1;33m
 BLUE        = \033[1;34m
 VIOLET      = \033[1;35m
 CYAN        = \033[36m
 WHITE       = \033[1;37m
 
-# SYMBOLS
-INFO = $(CYAN)ℹ️ 
+INFO = $(CYAN) ℹ️
 SUCCESS = $(GREEN)✅
 WARNING = $(WHITE)[$(YELLOW)⚠️$(WHITE)] $(YELLOW)
 ERROR = $(WHITE)[$(RED)❌$(WHITE)] $(RED)
+TRASH = $(RED) 🗑
 
 
 NAME = philo
@@ -34,26 +34,26 @@ CFLAGS	=	-Wall -Wextra -Werror  -g3
 all: obj $(NAME) 
 
 obj:
-	@echo "$(INFO)Creating objects folder... $(NOC)"
+	@echo "$(INFO) Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -I ./includes/ -o $@ -c $<
 
 $(NAME): $(OBJS)
-	@echo "$(INFO)Building $(NAME)...$(NOC)"
+	@echo "$(INFO) Building $(NAME)...$(NOC)"
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) 
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 
 clean:
-	@echo "$(RED)Deleting .o files...$(NOC)"
+	@echo "$(TRASH) Deleting .o files...$(NOC)"
 	@rm -rf obj $(OBJS) 
-	@echo "$(GREEN).o files deleted successfully!$(NOC)"
+	@echo "$(SUCCESS).o files deleted successfully!$(NOC)"
 fclean: clean
-	@echo "$(RED)Deleting $(NAME)...$(NOC)"
+	@echo "$(TRASH) Deleting $(NAME)...$(NOC)"
 	@rm -rf obj $(NAME) 
-	@echo "$(GREEN)$(NAME) deleted successfully!$(NOC)"
+	@echo "$(SUCCESS)$(NAME) deleted successfully!$(NOC)"
 
 re: fclean all
 
