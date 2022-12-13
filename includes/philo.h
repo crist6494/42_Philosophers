@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/12 16:34:39 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:55:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	parsing(t_parser *parser, int argc, char **argv);
 /*----------Parser_utils----------*/
 int		is_number(char *str);
 int		ft_atoi(char *str);
-
 void	ft_void(void);
 
 
