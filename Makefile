@@ -28,7 +28,7 @@ SRCS = main.c parser.c parser_utils.c\
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
 CC	= gcc
-CFLAGS	=	-Wall -Wextra -Werror  -g3
+CFLAGS	=	-Wall -Wextra -Werror  -MD -g3
 
 
 all: obj $(NAME) 
@@ -39,6 +39,7 @@ obj:
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -I ./includes/ -o $@ -c $<
+-include $(OBJ_DIR)*.d
 
 $(NAME): $(OBJS)
 	@echo "$(INFO) Building $(NAME)...$(NOC)"
