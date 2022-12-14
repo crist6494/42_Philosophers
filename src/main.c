@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/12 16:54:40 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:47:22 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,21 @@ void	ft_void(void)
 	system("leaks -q philo");
 }
 
+void	init_parameter(t_parser *parser)
+{
+	parser->num_philosophers = 0;
+	parser->time_to_die = 0;
+	parser->time_to_eat = 0;
+	parser->time_to_sleep = 0;
+	parser->num_times_must_eat = 0;
+}
+
 int main (int argc, char **argv)
 {
 	t_parser parser;
 	
 	//atexit(ft_void);
+	init_parameter(&parser);
 	parsing(&parser, argc, argv);
 	validate_parsing(parser);
 	printf("Num of philos is %d\n", parser.num_philosophers);
