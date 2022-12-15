@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/13 23:47:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/15 20:26:36 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,28 @@ void	ft_void(void)
 	system("leaks -q philo");
 }
 
-void	init_parameter(t_parser *parser)
+void	init_parameter(t_settings *settings)
 {
-	parser->num_philosophers = 0;
-	parser->time_to_die = 0;
-	parser->time_to_eat = 0;
-	parser->time_to_sleep = 0;
-	parser->num_times_must_eat = 0;
+	settings->num_philosophers = 0;
+	settings->time_to_die = 0;
+	settings->time_to_eat = 0;
+	settings->time_to_sleep = 0;
+	settings->num_times_must_eat = 0;
 }
 
 int main (int argc, char **argv)
 {
-	t_parser parser;
+	t_app app;
 	
-	//atexit(ft_void);
-	init_parameter(&parser);
-	parsing(&parser, argc, argv);
-	validate_parsing(parser);
-	printf("Num of philos is %d\n", parser.num_philosophers);
-	printf("Time to die is %d\n", parser.time_to_die);
-	printf("Time to eat  is %d\n", parser.time_to_eat);
-	printf("Time to sleep is %d\n", parser.time_to_sleep);
-	printf("Num of time must eat is %d\n", parser.num_times_must_eat);  
+	atexit(ft_void);
+	init_parameter(&app.settings);
+	parsing(&app.settings, argc, argv);
+	validate_parsing(app.settings);
+	printf("Num of philos is %zu\n", app.settings.num_philosophers);
+	printf("Time to die is %zu\n", app.settings.time_to_die);
+	printf("Time to eat  is %zu\n", app.settings.time_to_eat);
+	printf("Time to sleep is %zu\n", app.settings.time_to_sleep);
+	printf("Num of time must eat is %d\n", app.settings.num_times_must_eat);  
+	init_philosophers(&app);
+	clear_philosophers(&app);
 } 
