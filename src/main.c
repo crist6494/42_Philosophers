@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/15 20:26:36 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:03:28 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int main (int argc, char **argv)
 {
 	t_app app;
 	
-	atexit(ft_void);
-	init_parameter(&app.settings);
+	//atexit(ft_void);
+	init_parameter(&app.settin§gs);
 	parsing(&app.settings, argc, argv);
 	validate_parsing(app.settings);
-	printf("Num of philos is %zu\n", app.settings.num_philosophers);
-	printf("Time to die is %zu\n", app.settings.time_to_die);
-	printf("Time to eat  is %zu\n", app.settings.time_to_eat);
-	printf("Time to sleep is %zu\n", app.settings.time_to_sleep);
-	printf("Num of time must eat is %d\n", app.settings.num_times_must_eat);  
+	//printf("Num of philos is %zu\n", app.settings.num_philosophers);
+	//printf("Time to die is %zu\n", app.settings.time_to_die);
+	//printf("Time to eat  is %zu\n", app.settings.time_to_eat);
+	//printf("Time to sleep is %zu\n", app.settings.time_to_sleep);
+	//printf("Num of time must eat is %d\n", app.settings.num_times_must_eat);  
 	init_philosophers(&app);
 	clear_philosophers(&app);
 } 

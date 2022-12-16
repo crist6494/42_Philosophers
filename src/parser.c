@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:26:27 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/15 19:38:28 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:26:51 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	validate_parsing(t_settings settings)
 {
 	if(settings.return_value == 1)
 		return(1);
-	else if (settings.return_value == 2)
+	else if (settings.return_value == TOO_MANY_ARGUMENTS)
 		printf("%s  %s\n", MSG_TOO_MANY_ARGUMENTS, MSG_USAGE);
-	else if (settings.return_value == 3)
+	else if (settings.return_value == MISSING_ARGUMENTS)
 		printf("%s  %s\n", MSG_MISSING_ARGUMENTS, MSG_USAGE);
-	else if (settings.return_value == 4)
+	else if (settings.return_value == WRONG_ARGUMENT_TYPE)
 		printf("%s  %s\n", MSG_WRONG_ARGUMENT_TYPE, MSG_USAGE);
 	return (0);
 }
@@ -44,9 +44,9 @@ void	give_values(t_settings *settings, int key, int value)
 	int i;
 
 	if(argc > 6)
-		settings->return_value = 2;
+		settings->return_value = TOO_MANY_ARGUMENTS;
 	else if(argc < 5)
-		settings->return_value = 3;
+		settings->return_value = MISSING_ARGUMENTS;
 	else
 	{
 		i = 1;
@@ -54,7 +54,7 @@ void	give_values(t_settings *settings, int key, int value)
 		{
 			if(!is_number(argv[i])) //Preguntar alguien pq es en este orden y no en otro
 			{
-				settings->return_value = 4;
+				settings->return_value = WRONG_ARGUMENT_TYPE;
 				return ;
 			}
 			give_values(settings, i, ft_atoi(argv[i]));

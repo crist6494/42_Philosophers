@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 20:18:37 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/15 20:29:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:01:48 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	clear_philosophers(t_app *app)
 	i = 0;
 	while (i < app->settings.num_philosophers)
 	{
-		philosopher = app->philo[i];
+		philosopher = app->philos[i];
 		free(philosopher);
 		i++;
 	}
 	clear_mutex(app);
-	free(app->philo);
+	free(app->philos);
 }

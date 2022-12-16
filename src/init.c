@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 19:11:11 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/15 20:26:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:03:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@
 		return (NULL);
 	philosopher->id = id;
 	philosopher->settings = app->settings;
+	/* printf("The id is %d\n", philosopher->id);
+	printf("The settings is %zu\n", philosopher->settings.num_philosophers);
+	printf("The settings is %d\n", philosopher->settings.num_times_must_eat);
+	printf("The settings is %zu\n", philosopher->settings.time_to_eat);
+	printf("The settings is %zu\n", philosopher->settings.time_to_sleep); */
 	return (philosopher);
 }
 
- void	init_mutex(t_app *app)
+void	init_mutex(t_app *app)
 {
 	size_t i;
 
@@ -45,17 +50,18 @@ void	init_philosophers(t_app *app)
 
 	i = 0;
 	init_mutex(app);
-	app->philo = malloc(sizeof(t_philo) * app->settings.num_philosophers + 1);
-	if(!app->philo)
+	app->philos = malloc(sizeof(t_philo) * app->settings.num_philosophers + 1);
+	if(!app->philos)
 	{
-		app->philo = NULL;
+		app->philos = NULL;
 		return ;
 	}
 	while(i < app->settings.num_philosophers)
 	{
-		app->philo[i] = create_philosopher(app, i);
-		if(!app->philo[i])
+		app->philos[i] = create_philosopher(app, i);
+		if(!app->philos[i])
 			return ;
+		give_status(app->philos[i], EATING);
 		i++;
 	}
 }

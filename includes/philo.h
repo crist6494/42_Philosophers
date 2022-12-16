@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/15 20:33:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:48:54 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
-# include "./error_msg.h"
+
+# include "./msg.h"
 
 #define YELLOW	"\e[33m"
 #define RED	"\e[31m"
@@ -31,6 +32,15 @@
 /******************************************************************************
 *                                 Structures                                  *
 ******************************************************************************/
+
+typedef enum e_status
+{
+	THINKING = 0,
+	EATING = 1,
+	SLEEPING = 2,
+	DEAD = 3,
+	FORK = 4,
+}t_status;
 
 typedef struct	s_settings
 {
@@ -42,19 +52,18 @@ typedef struct	s_settings
 	int 	num_times_must_eat;
 }t_settings;
 
-
 typedef struct s_philo
 {
 	t_settings	settings;
 	int			id;	
+	t_status	state;
 }t_philo;
 
 typedef struct s_app
 {
-	t_philo		**philo;
 	t_settings	settings;
+	t_philo		**philos;
 	pthread_mutex_t	*fork;
-	
 }t_app;
 
 
@@ -80,5 +89,8 @@ void		init_philosophers(t_app *app);
 
 /*----------Clear----------*/
 void	clear_philosophers(t_app *app);
+
+/*----------Status----------*/
+void	give_status(t_philo *philospher, t_status state);
 
 #endif
