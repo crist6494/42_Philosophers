@@ -6,42 +6,46 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 19:11:11 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/16 17:03:55 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:45:43 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
- t_philo	*create_philosopher(t_app *app, int id)
+t_philo	*create_philosopher(t_app *app,int n_philos)
 {
 	t_philo	*philosopher;
-
-	philosopher = malloc(sizeof(t_philo));
+	size_t i;
+	
+	i = 0;
+	philosopher = (t_philo *)malloc(sizeof(t_philo) * n_philos);
 	if(!philosopher)
 		return (NULL);
-	philosopher->id = id;
-	philosopher->settings = app->settings;
-	/* printf("The id is %d\n", philosopher->id);
-	printf("The settings is %zu\n", philosopher->settings.num_philosophers);
-	printf("The settings is %d\n", philosopher->settings.num_times_must_eat);
-	printf("The settings is %zu\n", philosopher->settings.time_to_eat);
-	printf("The settings is %zu\n", philosopher->settings.time_to_sleep); */
+	while(i < (size_t)n_philos)
+	{
+		philosopher[i].id = i;
+		philosopher[i].settings = app->settings;
+		philosopher[i].state = THINKING;
+		i++;
+	}
 	return (philosopher);
 }
 
-void	init_mutex(t_app *app)
+pthread_mutex_t	*create_mutex(t_app *app)
 {
 	size_t i;
-
+	pthread_mutex_t	*fork;
+	
 	i = 0;
-	app->fork = malloc(sizeof(pthread_mutex_t) * app->settings.num_philosophers + 1);
-	if(!app->fork)
-		return ;
+	fork = malloc(sizeof(pthread_mutex_t) * app->settings.num_philosophers);
+	if(!fork)
+		return (NULL);
 	while(i < app->settings.num_philosophers)
 	{
-		pthread_mutex_init(&app->fork[i], NULL);
+		pthread_mutex_init(&fork[i], NULL);
 		i++;
 	}
+	return(fork);
 }
 
 void	init_philosophers(t_app *app)
@@ -49,19 +53,36 @@ void	init_philosophers(t_app *app)
 	size_t i;
 
 	i = 0;
-	init_mutex(app);
-	app->philos = malloc(sizeof(t_philo) * app->settings.num_philosophers + 1);
-	if(!app->philos)
+	app->fork = create_mutex(app);
+	app->philos = create_philosopher(app, app->settings.num_philosophers);
+	/* while ((i < app->settings.num_philosophers))
 	{
-		app->philos = NULL;
-		return ;
-	}
+		give_status(&app->philos[i], EATING);
+		i++;
+	} */
+	
+}
+void	*philo_routine(void *data)
+{
+	t_philo	*philosopher;
+	
+	philosopher = ((t_philo *)data);
+	printf("Id del philo %d\n", philosopher->id);
+	printf("Estado del filosofo %d\n", philosopher->state);
+	return((void *)0);
+}
+
+void	start(t_app *app)
+{
+	size_t	i;
+
+	i = 0;
 	while(i < app->settings.num_philosophers)
 	{
-		app->philos[i] = create_philosopher(app, i);
-		if(!app->philos[i])
+		if(pthread_create(&app->philos[i].thread, NULL, &philo_routine, &app->philos[i]) != 0)
 			return ;
-		give_status(app->philos[i], EATING);
 		i++;
 	}
-}
+} 
+
+

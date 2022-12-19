@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/16 16:48:54 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:27:59 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,17 @@ typedef struct s_philo
 {
 	t_settings	settings;
 	int			id;	
+	int			left_fork;
+	int			right_fork;
+	pthread_t	thread;
 	t_status	state;
+	
 }t_philo;
 
 typedef struct s_app
 {
-	t_settings	settings;
-	t_philo		**philos;
+	t_settings		settings;
+	t_philo			*philos;
 	pthread_mutex_t	*fork;
 }t_app;
 
@@ -83,9 +87,11 @@ int		ft_atoi(char *str);
 void	ft_void(void);
 
 /*----------Init----------*/
-t_philo		*create_philosopher(t_app *app, int id);
-void		init_mutex(t_app *app);
-void		init_philosophers(t_app *app);
+t_philo			*create_philosopher(t_app *app, int n_philos);
+pthread_mutex_t	*create_mutex(t_app *app);
+void			init_philosophers(t_app *app);
+void			*philo_routine(void *data);
+void			start(t_app *app);
 
 /*----------Clear----------*/
 void	clear_philosophers(t_app *app);
