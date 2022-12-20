@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:27:29 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/16 16:56:14 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:37:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef enum e_error
 
 
 /*------STATUS_MSG----------*/
-# define MSG_FORK "%lld %d has taken a fork\n" 
-# define MSG_EATING "%lld %d is eating\n"
-# define MSG_SLEEPING "%lld %d is sleeping\n"
-# define MSG_THINKING "%lld %d is thinkingssss\n"
-# define MSG_DEAD "%lld %d died\n"
+# define MSG_FORK "%lld %d has taken a fork 🍴\n" 
+# define MSG_EATING "%lld %d is eating 🍝\n"
+# define MSG_SLEEPING "%lld %d is sleeping 🛌\n"
+# define MSG_THINKING "%lld %d is thinking 💬\n"
+# define MSG_DEAD "%lld %d died ☠️\n"
 
 #endif

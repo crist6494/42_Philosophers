@@ -23,7 +23,7 @@ NAME = philo
 SRC_DIR	=	./src/
 OBJ_DIR	=	./obj/
 
-SRCS = main.c parser.c init.c clear.c status.c parser_utils.c\
+SRCS = main.c parser.c init.c clear.c status.c routine.c utils.c parser_utils.c\
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 

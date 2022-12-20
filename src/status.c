@@ -6,21 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:07:19 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/16 16:48:35 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:04:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-time_t	get_time_in_ms(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	give_status(t_philo *philospher, t_status state)
+void	print_status(t_philo *philospher, t_status state)
 {
 	char	*msg;
 
@@ -36,4 +28,16 @@ void	give_status(t_philo *philospher, t_status state)
 		msg = MSG_FORK;
 	printf(msg, get_time_in_ms(), philospher->id);	
 }
- 
+
+useconds_t time_status(t_philo *philospher, t_status state)
+{
+	useconds_t	time;
+
+	if(state == EATING)
+		time = philospher->settings.time_to_eat;
+	else if(state == SLEEPING)
+		time = philospher->settings.time_to_sleep;
+	else 
+		time = 0;
+	return (time * 1000);
+}

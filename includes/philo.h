@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/19 20:27:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:32:22 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #define YELLOW	"\e[33m"
 #define RED	"\e[31m"
 #define GREEN	"\e[32m"
+# define NC	"\e[0m"
 
 /******************************************************************************
 *                                 Structures                                  *
@@ -58,6 +59,7 @@ typedef struct s_philo
 	int			id;	
 	int			left_fork;
 	int			right_fork;
+	int			meals;
 	pthread_t	thread;
 	t_status	state;
 	
@@ -86,6 +88,9 @@ int		is_number(char *str);
 int		ft_atoi(char *str);
 void	ft_void(void);
 
+/*----------Parser_utils----------*/
+time_t	get_time_in_ms(void);
+
 /*----------Init----------*/
 t_philo			*create_philosopher(t_app *app, int n_philos);
 pthread_mutex_t	*create_mutex(t_app *app);
@@ -97,6 +102,7 @@ void			start(t_app *app);
 void	clear_philosophers(t_app *app);
 
 /*----------Status----------*/
-void	give_status(t_philo *philospher, t_status state);
+void		print_status(t_philo *philospher, t_status state);
+useconds_t 	time_status(t_philo *philospher, t_status state);
 
 #endif

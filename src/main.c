@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/19 20:44:19 by cmorales         ###   ########.fr       */
+/*   Updated: 2022/12/20 20:27:49 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int main (int argc, char **argv)
 	//printf("Time to sleep is %zu\n", app.settings.time_to_sleep);
 	//printf("Num of time must eat is %d\n", app.settings.num_times_must_eat);  
 	init_philosophers(&app);
-	start(&app);
-	printf("hola\n");
+	//start(&app);
 	join_threads(&app);
 	clear_philosophers(&app);
 } 
