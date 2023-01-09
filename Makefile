@@ -23,7 +23,7 @@ NAME = philo
 SRC_DIR	=	./src/
 OBJ_DIR	=	./obj/
 
-SRCS = main.c parser.c init.c clear.c status.c routine.c utils.c parser_utils.c\
+SRCS = main.c parsing/parser.c parsing/parser_utils.c philosopher/init.c  philosopher/status.c philosopher/routine.c utils/utils.c utils/clear.c\
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
@@ -36,6 +36,9 @@ all: obj $(NAME)
 obj:
 	@echo "$(INFO) Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/utils
+	@mkdir -p $(OBJ_DIR)/philosopher
+	@mkdir -p $(OBJ_DIR)/parsing
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -I ./includes/ -o $@ -c $<

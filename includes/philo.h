@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/20 20:32:22 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:06:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef enum e_status
 	FORK = 4,
 }t_status;
 
+typedef struct	s_app t_app;
+
 typedef struct	s_settings
 {
 	int 	return_value;
@@ -55,13 +57,15 @@ typedef struct	s_settings
 
 typedef struct s_philo
 {
+	t_app		*app;
 	t_settings	settings;
+	t_status	state;
 	int			id;	
 	int			left_fork;
 	int			right_fork;
 	int			meals;
+	long long	limit;
 	pthread_t	thread;
-	t_status	state;
 	
 }t_philo;
 
@@ -69,9 +73,8 @@ typedef struct s_app
 {
 	t_settings		settings;
 	t_philo			*philos;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	*forks;
 }t_app;
-
 
 /******************************************************************************
 *                           Function Prototypes                               *
