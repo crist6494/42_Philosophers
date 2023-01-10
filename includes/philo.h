@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/09 20:06:25 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:33:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 #define YELLOW	"\e[33m"
 #define RED	"\e[31m"
 #define GREEN	"\e[32m"
-# define NC	"\e[0m"
+#define NC	"\e[0m"
+#define MAGENTA	"\x1B[35m"
+#define CYAN	"\x1B[36m"
+
+
 
 /******************************************************************************
 *                                 Structures                                  *

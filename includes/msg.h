@@ -6,13 +6,15 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:27:29 by cmorales          #+#    #+#             */
-/*   Updated: 2022/12/20 18:37:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:31:59 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MSG_H
 # define MSG_H
 
+
+#include "./philo.h"
 
 /*------ERROR_MSG----------*/
 
@@ -30,10 +32,10 @@ typedef enum e_error
 
 
 /*------STATUS_MSG----------*/
-# define MSG_FORK "%lld %d has taken a fork 🍴\n" 
-# define MSG_EATING "%lld %d is eating 🍝\n"
-# define MSG_SLEEPING "%lld %d is sleeping 🛌\n"
-# define MSG_THINKING "%lld %d is thinking 💬\n"
-# define MSG_DEAD "%lld %d died ☠️\n"
+# define MSG_FORK "%s %lld %d  has taken a fork 🍴\n" 
+# define MSG_EATING "%s %lld %d  is eating 🍝\n"
+# define MSG_SLEEPING "%s %lld %d  is sleeping 🛌\n"
+# define MSG_THINKING "%s %lld %d  is thinking 💬\n"
+# define MSG_DEAD "%s %lld %d  died ☠️\n"
 
 #endif

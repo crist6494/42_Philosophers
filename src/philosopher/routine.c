@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:30:35 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/09 20:38:42 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:52:13 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	pthread_mutex_lock(&philosopher->app->forks[philosopher->right_fork]);
 	print_status(philosopher,FORK);
 	print_status(philosopher,EATING);
-	philosopher->limit = get_time_in_ms() + philosopher->settings.time_to_die;
+	//philosopher->limit = get_time_in_ms() + philosopher->settings.time_to_die;
 	usleep(time_status(philosopher, EATING));
 	philosopher->meals++;
 	pthread_mutex_unlock(&philosopher->app->forks[philosopher->left_fork]);
@@ -28,15 +28,24 @@
 	usleep(time_status(philosopher, SLEEPING));
 } 
 
+static void	*philo_alone(t_philo *philosopher)
+{
+	pthread_mutex_lock(&philosopher->app->forks[philosopher->left_fork]);
+	print_status(philosopher,FORK);
+	usleep(time_status(philosopher, DEAD));
+	print_status(philosopher,DEAD);
+	return (NULL);
+}
+
 void	*philo_routine(void *data)
 {
 	t_philo	*philosopher;
 	
 	philosopher = ((t_philo *)data);
-	if(philosopher->settings.num_times_must_eat == 0)
-		return(0);
 	if(philosopher->settings.time_to_die == 0)
 		return(0);
+	if(philosopher->app->settings.num_philosophers == 1)
+		return (philo_alone(philosopher));
 	while(1)
 	{
 		eat_sleep_routine(philosopher);

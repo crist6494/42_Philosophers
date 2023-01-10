@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 19:11:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/09 20:37:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:20:02 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	assing_forks(t_philo *philosopher)
 		philosopher->left_fork = (id + 1) % n_philos;
 		philosopher->right_fork = id;
 	}
-	printf("%s%d   %d%s\n", YELLOW,philosopher->left_fork,philosopher->right_fork,NC); 
+	//printf("%s%d   %d%s\n", YELLOW,philosopher->left_fork,philosopher->right_fork,NC); 
 }
 
 t_philo	*create_philosopher(t_app *app, int n_philos)
@@ -60,9 +60,9 @@ t_philo	*create_philosopher(t_app *app, int n_philos)
 	{
 		philosopher[i].id = i;
 		philosopher[i].settings = app->settings;
+		philosopher[i].app = app;
 		philosopher[i].state = THINKING;
 		philosopher[i].meals = 0;
-		philosopher[i].app = app;
 		assing_forks(&philosopher[i]);
 		i++;
 	}
