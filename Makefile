@@ -23,7 +23,7 @@ NAME = philo
 SRC_DIR	=	./src/
 OBJ_DIR	=	./obj/
 
-SRCS = main.c parsing/parser.c parsing/parser_utils.c philosopher/init.c  philosopher/status.c philosopher/routine.c utils/utils.c utils/clear.c\
+SRCS = main.c parsing/parser.c parsing/parser_utils.c philosopher/init.c  philosopher/status.c philosopher/routine.c philosopher/supervisor_routine.c utils/utils.c utils/clear.c\
 
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 

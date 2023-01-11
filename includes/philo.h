@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/10 22:33:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/11 23:36:33 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	int			meals;
-	long long	limit;
+	size_t		last_meal;
 	pthread_t	thread;
 	
 }t_philo;
 
 typedef struct s_app
 {
+	bool			stop_signal;
+	pthread_t		supervisor;
 	t_settings		settings;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
