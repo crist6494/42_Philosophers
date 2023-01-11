@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:30:35 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/10 23:52:13 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:29:15 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 {
 	pthread_mutex_lock(&philosopher->app->forks[philosopher->left_fork]);
 	print_status(philosopher,FORK);
+	printf("%s El philo %d cogio el tenedor %d de su izquierda\n",CYAN,philosopher->id,philosopher->left_fork);
 	pthread_mutex_lock(&philosopher->app->forks[philosopher->right_fork]);
 	print_status(philosopher,FORK);
+	printf("%s El philo %d cogio el tenedor %d de su derecha\n",CYAN,philosopher->id,philosopher->right_fork);
 	print_status(philosopher,EATING);
 	//philosopher->limit = get_time_in_ms() + philosopher->settings.time_to_die;
 	usleep(time_status(philosopher, EATING));
