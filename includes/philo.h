@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/11 23:36:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:29:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ typedef struct	s_settings
 {
 	int 	return_value;
 	size_t	num_philosophers;
-	size_t	time_to_die;
-	size_t	time_to_eat;
-	size_t	time_to_sleep;
+	time_t	time_to_die;
+	time_t	time_to_eat;
+	time_t	time_to_sleep;
 	int 	num_times_must_eat;
 }t_settings;
 
@@ -68,14 +68,14 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	int			meals;
-	size_t		last_meal;
+	time_t		last_meal;
 	pthread_t	thread;
 	
 }t_philo;
 
 typedef struct s_app
 {
-	bool			stop_signal;
+	int				stop_signal;
 	pthread_t		supervisor;
 	t_settings		settings;
 	t_philo			*philos;
@@ -113,5 +113,9 @@ void	clear_philosophers(t_app *app);
 /*----------Status----------*/
 void		print_status(t_philo *philospher, t_status state);
 useconds_t 	time_status(t_philo *philospher, t_status state);
+
+int		check_simulation_stopped(t_app *app);
+void	philo_sleep(t_app *app, time_t time_sleeping);
+void	*supervisor_routine(void *data);
 
 #endif
