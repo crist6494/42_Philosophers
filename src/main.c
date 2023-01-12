@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/12 20:45:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/13 00:43:29 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	start(t_app *app)
 	app->philos = create_philosopher(app, app->settings.num_philosophers);
 	//if(pthread_create(&app->philos[i].thread, NULL, &supervisor_routine, &app->philos[i]) != 0)
 	//	return ;
-	printf("%zu\n", app->philos->last_meal);
+	//printf("%zu\n", app->philos->last_meal);
 	while(i < app->settings.num_philosophers)
 	{
 		

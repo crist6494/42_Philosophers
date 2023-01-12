@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:26:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/12 20:44:13 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/13 00:09:40 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	check_simulation_stopped(t_app *app)
 
 int	someone_dead(t_philo *philosopher)
 {
-	time_t	time;
+	//time_t	time;
 
 	(void)philosopher;
-	time = get_time_in_ms();
+	//time = get_time_in_ms();
 	printf("Hola");
 	//printf("%zu", philosopher->last_meal);
 	/* if((time - philosopher->last_meal) >= philosopher->settings.time_to_die)
