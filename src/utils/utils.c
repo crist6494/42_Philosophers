@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:50:13 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/13 00:20:58 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:04:17 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ void	philo_sleep(t_app *app, time_t time_sleeping)
 			break;
 		usleep(235);
 	}
+}
+
+void	sim_start_delay(time_t start_time)
+{
+	while (get_time_in_ms() < start_time)
+		continue ;
 }

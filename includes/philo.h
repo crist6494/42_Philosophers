@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/12 20:29:24 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:06:57 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_philo
 
 typedef struct s_app
 {
+	time_t			start_time;
 	int				stop_signal;
 	pthread_t		supervisor;
 	t_settings		settings;
@@ -117,5 +118,7 @@ useconds_t 	time_status(t_philo *philospher, t_status state);
 int		check_simulation_stopped(t_app *app);
 void	philo_sleep(t_app *app, time_t time_sleeping);
 void	*supervisor_routine(void *data);
+
+void	sim_start_delay(time_t start_time);
 
 #endif
