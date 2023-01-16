@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/13 20:06:57 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:12:56 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum e_status
 	SLEEPING = 2,
 	DEAD = 3,
 	FORK = 4,
+	FULL = 5,
 }t_status;
 
 typedef struct	s_app t_app;
@@ -70,7 +71,7 @@ typedef struct s_philo
 	int			meals;
 	time_t		last_meal;
 	pthread_t	thread;
-	
+	pthread_mutex_t	meals_lock;
 }t_philo;
 
 typedef struct s_app

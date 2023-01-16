@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/13 20:52:38 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:00:49 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ void	start(t_app *app)
 	i = 0;
 	app->forks = create_mutex(app);
 	app->philos = create_philosopher(app, app->settings.num_philosophers);
-	app->start_time = get_time_in_ms() + (app->settings.num_philosophers * 2 * 10);
+	//printf("app %d\n", app->settings.num_times_must_eat);
+	//printf("philo main %d\n", app->philos[1].id);
+	//app->start_time = get_time_in_ms() + (app->settings.num_philosophers * 2 * 10);
 	while(i < app->settings.num_philosophers)
 	{
-		
 		if(pthread_create(&app->philos[i].thread, NULL, &philo_routine, &app->philos[i]) != 0)
 			return ;
 		i++;
 	}
 	if(app->settings.num_philosophers > 1)
-		if(pthread_create(&app->philos[i].thread, NULL, &supervisor_routine, &app->philos[i]) != 0)
-			return ; 
+	{
+		if(pthread_create(&app->supervisor, NULL, &supervisor_routine, app) != 0)
+			return ;  
+	}
 } 
 
 void	stop(t_app *app)
@@ -66,6 +69,7 @@ int main (int argc, char **argv)
 	t_app app;
 	
 	//atexit(ft_void);
+	app.start_time = get_time_in_ms();
 	init_parameter(&app.settings);
 	parsing(&app.settings, argc, argv);
 	validate_parsing(app.settings);

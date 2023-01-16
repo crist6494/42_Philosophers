@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:07:19 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/10 23:48:59 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:59:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,27 @@ void	print_status(t_philo *philosopher, t_status state)
 	if (state == THINKING)
 	{
 		msg = MSG_THINKING;
-		printf(msg, CYAN, get_time_in_ms(), philosopher->id);		
+		printf(msg, CYAN, get_time_in_ms() - philosopher->app->start_time, philosopher->id);		
 	}
 	else if (state == EATING)
 	{
 		msg = MSG_EATING;
-		printf(msg, GREEN, get_time_in_ms(), philosopher->id);	
+		printf(msg, GREEN, get_time_in_ms() - philosopher->app->start_time, philosopher->id);	
 	}
 	else if (state == SLEEPING)
 	{
 		msg = MSG_SLEEPING;
-		printf(msg, MAGENTA, get_time_in_ms(), philosopher->id);		
+		printf(msg, MAGENTA, get_time_in_ms() - philosopher->app->start_time, philosopher->id);		
 	}
 	else if (state == DEAD)
 	{
 		msg = MSG_DEAD;
-		printf(msg, RED, get_time_in_ms(), philosopher->id);			
+		printf(msg, RED, get_time_in_ms() - philosopher->app->start_time, philosopher->id);			
 	}
 	else if (state == FORK)
 	{
 		msg = MSG_FORK;
-		printf(msg, YELLOW,get_time_in_ms(),philosopher->id);	
+		printf(msg, YELLOW,get_time_in_ms() - philosopher->app->start_time,philosopher->id);	
 	}
 }
 

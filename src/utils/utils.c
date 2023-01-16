@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:50:13 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/13 20:04:17 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:51:38 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 time_t	get_time_in_ms(void)
 {
 	struct timeval	time;
-
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
