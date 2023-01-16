@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:34 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/16 20:12:56 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:17:42 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_philo
 	int			meals;
 	time_t		last_meal;
 	pthread_t	thread;
-	pthread_mutex_t	meals_lock;
 }t_philo;
 
 typedef struct s_app
@@ -121,5 +120,6 @@ void	philo_sleep(t_app *app, time_t time_sleeping);
 void	*supervisor_routine(void *data);
 
 void	sim_start_delay(time_t start_time);
+void	clear_mutex(t_app *app);
 
 #endif

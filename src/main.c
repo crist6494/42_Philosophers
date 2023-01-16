@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/16 20:00:49 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:18:34 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_parameter(t_settings *settings)
 
 void	start(t_app *app)
 {
-	size_t	i;
+	unsigned int	i;
 	
 	i = 0;
 	app->forks = create_mutex(app);
@@ -61,7 +61,9 @@ void	stop(t_app *app)
 		i++;
 	}
 	if(app->settings.num_philosophers > 1)
-		pthread_join(app->supervisor, NULL); 
+		pthread_join(app->supervisor, NULL);
+	clear_mutex(app); 
+	clear_philosophers(app);
 }
 
 int main (int argc, char **argv)
@@ -75,5 +77,5 @@ int main (int argc, char **argv)
 	validate_parsing(app.settings);
 	start(&app);
 	stop(&app);
-	clear_philosophers(&app);
+	return (EXIT_SUCCESS);
 } 
