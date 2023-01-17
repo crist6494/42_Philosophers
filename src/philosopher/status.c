@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:07:19 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/16 19:59:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:46:04 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 void	print_status(t_philo *philosopher, t_status state)
 {
 	char	*msg;
-
+	
+	if(check_simulation_stopped(philosopher->app)== 1)
+	{
+		if(state == DEAD)
+		{
+			msg = MSG_DEAD;
+			printf(msg, RED, get_time_in_ms() - philosopher->app->start_time, philosopher->id);	
+			return ;
+		}
+		return ;
+	}
 	if (state == THINKING)
 	{
 		msg = MSG_THINKING;
@@ -31,19 +41,15 @@ void	print_status(t_philo *philosopher, t_status state)
 		msg = MSG_SLEEPING;
 		printf(msg, MAGENTA, get_time_in_ms() - philosopher->app->start_time, philosopher->id);		
 	}
-	else if (state == DEAD)
-	{
-		msg = MSG_DEAD;
-		printf(msg, RED, get_time_in_ms() - philosopher->app->start_time, philosopher->id);			
-	}
 	else if (state == FORK)
 	{
 		msg = MSG_FORK;
 		printf(msg, YELLOW,get_time_in_ms() - philosopher->app->start_time,philosopher->id);	
+	
 	}
 }
 
-useconds_t time_status(t_philo *philosopher, t_status state)
+/* useconds_t time_status(t_philo *philosopher, t_status state)
 {
 	useconds_t	time;
 
@@ -57,3 +63,4 @@ useconds_t time_status(t_philo *philosopher, t_status state)
 		time = 0;
 	return (time * 1000);
 }
+ */

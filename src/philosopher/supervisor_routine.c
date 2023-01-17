@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:26:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/16 20:39:34 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:46:46 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_dead_and_full_meals(t_app *app)
 	}
 	if(app->settings.num_times_must_eat > 0 && full == app->settings.num_philosophers)
 	{
-		write(1, "jamon\n", 6);
+		//write(1, "jamon\n", 6);
 		set_stop_signal(app, 1);
 		return(1);
 	}

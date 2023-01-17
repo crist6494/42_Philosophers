@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:30:35 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 00:06:44 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:31:54 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	*philo_routine(void *data)
 	
 	philosopher = ((t_philo *)data);
 	philosopher->last_meal = philosopher->app->start_time;
-	//printf("%zu\n", philosopher->app->start_time);
 	//sim_start_delay(philosopher->app->start_time);
 	if(philosopher->settings.time_to_die == 0)
 		return(NULL);
