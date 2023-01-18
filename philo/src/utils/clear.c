@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 20:18:37 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 19:48:06 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:30:26 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,9 @@ void	clear_philosophers(t_app *app)
 {
 	free(app->forks);
 	free(app->philos);
+}
+
+void	ft_void(void)
+{
+	system("leaks -q philo");
 }

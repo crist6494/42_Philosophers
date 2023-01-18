@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 19:47:46 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:44:35 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ int	ft_atoi(char *str)
 		pos++;
 	}
 	num *= neg;
+	if (num > INT_MAX)
+		return (0);
 	return (num);
 }

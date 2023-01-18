@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 19:30:35 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 23:21:01 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:43:57 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	think_routine(t_philo *philosopher, int delay)
 	time_to_die = philosopher->settings.time_to_die;
 	time_to_eat = philosopher->settings.time_to_eat;
 	last_meal = philosopher->last_meal;
-	think_time = (time_to_die - (get_time_in_ms() - last_meal) - time_to_eat) / 2;
+	think_time = (time_to_die - (get_time_in_ms() - last_meal)
+			- time_to_eat) / 2;
 	if (think_time < 0)
 		think_time = 0;
 	if (think_time == 0 && delay == 1)
@@ -67,6 +68,8 @@ void	*philo_routine(void *data)
 	philosopher = ((t_philo *)data);
 	philosopher->last_meal = philosopher->app->start_time;
 	start_delay(philosopher->app->start_time);
+	if (philosopher->settings.num_times_must_eat == 0)
+		return (NULL);
 	if (philosopher->settings.time_to_die == 0)
 		return (NULL);
 	if (philosopher->app->settings.num_philosophers == 1)
@@ -78,5 +81,5 @@ void	*philo_routine(void *data)
 		eat_sleep_routine(philosopher);
 		think_routine(philosopher, 0);
 	}
-	return ((void *)0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:26:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 23:21:05 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:44:08 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	check_dead_and_full_meals(t_app *app)
 	{
 		if (someone_dead(&app->philos[i]) == 1)
 			return (1);
+		if (app->settings.num_times_must_eat == 0)
+			return (1);
 		if (app->settings.num_times_must_eat > 0)
 		{
 			if (app->philos[i].meals >= app->settings.num_times_must_eat)
@@ -75,8 +77,8 @@ void	*supervisor_routine(void *data)
 	while (1)
 	{
 		if (check_dead_and_full_meals(app) == 1)
-			return ((void *)0);
+			return (NULL);
 		usleep(235);
 	}
-	return ((void *)0);
+	return (NULL);
 }

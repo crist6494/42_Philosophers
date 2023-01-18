@@ -6,13 +6,13 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:07:19 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 00:53:27 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:12:23 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-void	select_msg(t_philo *philosopher, t_status state)
+static void	select_msg(t_philo *philosopher, t_status state)
 {
 	if (state == DEAD)
 		printf("%s %ld %d  died ☠️ %s\n", RED, get_time_in_ms()
@@ -42,20 +42,18 @@ void	print_status(t_philo *philosopher, t_status state)
 			pthread_mutex_unlock(&philosopher->app->write_lock);
 			return ;
 		}
+		pthread_mutex_unlock(&philosopher->app->write_lock);
 		return ;
 	}
-	else
-	{
-		if (state == THINKING)
-			select_msg(philosopher, THINKING);
-		else if (state == EATING)
-			select_msg(philosopher, EATING);
-		else if (state == SLEEPING)
-			select_msg(philosopher, SLEEPING);
-		else if (state == FORK)
-			select_msg(philosopher, FORK);
-		else if (state == DEAD)
-			select_msg(philosopher, DEAD);
-		pthread_mutex_unlock(&philosopher->app->write_lock);
-	}
+	if (state == THINKING)
+		select_msg(philosopher, THINKING);
+	else if (state == EATING)
+		select_msg(philosopher, EATING);
+	else if (state == SLEEPING)
+		select_msg(philosopher, SLEEPING);
+	else if (state == FORK)
+		select_msg(philosopher, FORK);
+	else if (state == DEAD)
+		select_msg(philosopher, DEAD);
+	pthread_mutex_unlock(&philosopher->app->write_lock);
 }
