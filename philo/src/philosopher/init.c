@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 19:11:11 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 00:43:50 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 00:06:33 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ pthread_mutex_t	*create_mutex(t_app *app)
 		i++;
 	}
 	return (forks);
+}
+
+int	init_mutex(t_app *app)
+{
+	app->forks = create_mutex(app);
+	if (pthread_mutex_init(&app->write_lock, 0) != 0)
+		return (0);
+	if (pthread_mutex_init(&app->signal_lock, 0) != 0)
+		return (0);
+	return (1);
 }
 
 void	assing_forks(t_philo *philosopher)
@@ -59,7 +69,6 @@ t_philo	*create_philosopher(t_app *app, int n_philos)
 		philosopher[i].id = i;
 		philosopher[i].settings = app->settings;
 		philosopher[i].app = app;
-		philosopher[i].state = THINKING;
 		philosopher[i].meals = 0;
 		assing_forks(&philosopher[i]);
 		i++;

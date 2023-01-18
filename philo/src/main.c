@@ -6,33 +6,35 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 19:42:15 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 00:39:12 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-static void	start(t_app *app)
+int	start(t_app *app)
 {
 	unsigned int	i;
 
 	i = 0;
-	app->forks = create_mutex(app);
 	app->philos = create_philosopher(app, app->settings.num_philosophers);
-	app->start_time = get_time_in_ms() + (app->settings.num_philosophers * 20);
+	if(!init_mutex(app))
+		return (0);
+	app->start_time = get_time_in_ms() + (app->settings.num_philosophers *20);
 	while (i < app->settings.num_philosophers)
 	{
 		if (pthread_create(&app->philos[i].thread, NULL, &philo_routine,
 				&app->philos[i]) != 0)
-			return ;
+			return (0);
 		i++;
 	}
 	if (app->settings.num_philosophers > 1)
 	{
 		if (pthread_create(&app->supervisor, NULL, &supervisor_routine,
 				app) != 0)
-			return ;
+			return (0);
 	}
+	return (1);
 }
 
 static void	stop(t_app *app)
@@ -55,13 +57,12 @@ int	main(int argc, char **argv)
 {
 	t_app	app;
 
-	if (pthread_mutex_init(&app.write_lock, 0) != 0)
-		return (0);
 	init_parameter(&app.settings);
 	parsing(&app.settings, argc, argv);
 	if (!validate_parsing(app.settings))
-		return (EXIT_SUCCESS);
-	start(&app);
+		return (EXIT_FAILURE);
+	if(!start(&app))
+		return(EXIT_FAILURE);
 	stop(&app);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:26:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 19:44:08 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 00:14:50 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 static void	set_stop_signal(t_app *app, int state)
 {
+	pthread_mutex_lock(&app->signal_lock);
 	app->stop_signal = state;
+	pthread_mutex_unlock(&app->signal_lock);
 }
 
 int	check_simulation_stopped(t_app *app)
 {
+	int s;
+	
+	s = 0;
+	pthread_mutex_lock(&app->signal_lock);
 	if (app->stop_signal == 1)
-		return (1);
-	return (0);
+		s = 1;
+	pthread_mutex_unlock(&app->signal_lock);
+	return (s);
 }
 
 int	someone_dead(t_philo *philosopher)

@@ -6,11 +6,69 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:26:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 20:51:46 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 23:54:21 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
+
+void	give_values(t_settings *settings, int key, int value)
+{
+	if (key == 1)
+		settings->num_philosophers = value;
+	else if (key == 2)
+		settings->time_to_die = value;
+	else if (key == 3)
+		settings->time_to_eat = value;
+	else if (key == 4)
+		settings->time_to_sleep = value;
+	else if (key == 5)
+		settings->num_times_must_eat = value;
+}
+
+int parser(t_settings *settings, char **argv, int i)
+{
+	if (!is_number(argv[i]))
+	{
+		settings->return_value = WRONG_ARGUMENT_TYPE;
+		return (0);
+	}
+	if (i == 1 && (ft_atoi(argv[i]) <= 0 || ft_atoi(argv[i]) > 250))
+	{
+		settings->return_value = OVERFLOW_NUM_PHILOS;
+		return (0);
+	}
+	if (ft_atoi(argv[i]) == -1)
+	{
+		settings->return_value = OVERFLOW_NUM_INT;
+		return (0);
+	} 
+	return (1);
+}
+
+void	parsing(t_settings *settings, int argc, char **argv)
+{
+	if (argc > 6)
+		settings->return_value = TOO_MANY_ARGUMENTS;
+	else if (argc < 5)
+		settings->return_value = MISSING_ARGUMENTS;
+	else
+	{
+		int	i;
+
+		i = 1;
+		while (argv[i])
+		{
+			if(!parser(settings,argv, i))
+				return ;
+			give_values(settings, i, ft_atoi(argv[i]));
+			i++;
+		}
+		if (i < 6)
+			give_values(settings, 5, -1);
+		settings->return_value = 1;
+	}
+}
 
 int	validate_parsing(t_settings settings)
 {
@@ -27,58 +85,4 @@ int	validate_parsing(t_settings settings)
 	else if (settings.return_value == OVERFLOW_NUM_INT)
 		printf("%s\n", MSG_OVERFLOW_INT);
 	return (0);
-}
-
-void	give_values(t_settings *settings, int key, int value)
-{
-	if (key == 1)
-		settings->num_philosophers = value;
-	else if (key == 2)
-		settings->time_to_die = value;
-	else if (key == 3)
-		settings->time_to_eat = value;
-	else if (key == 4)
-		settings->time_to_sleep = value;
-	else if (key == 5)
-		settings->num_times_must_eat = value;
-}
-
-static void	parser(t_settings *settings, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (argv[i])
-	{
-		if (!is_number(argv[i]))
-		{
-			settings->return_value = WRONG_ARGUMENT_TYPE;
-			return ;
-		}
-		if (i == 1 && (ft_atoi(argv[i]) <= 0 || ft_atoi(argv[i]) > 250))
-		{
-			settings->return_value = OVERFLOW_NUM_PHILOS;
-			return ;
-		}
-		/* if (ft_atoi(argv[i]) == 0)
-		{
-			settings->return_value = OVERFLOW_NUM_INT;
-			return ;
-		} */
-		give_values(settings, i, ft_atoi(argv[i]));
-		i++;
-	}
-	if (i < 6)
-		give_values(settings, 5, -1);
-	settings->return_value = 1;
-}
-
-void	parsing(t_settings *settings, int argc, char **argv)
-{
-	if (argc > 6)
-		settings->return_value = TOO_MANY_ARGUMENTS;
-	else if (argc < 5)
-		settings->return_value = MISSING_ARGUMENTS;
-	else
-		parser(settings, argv);
 }

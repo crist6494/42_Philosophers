@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 20:44:35 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 23:17:41 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,18 @@ int	is_number(char *str)
 
 int	ft_atoi(char *str)
 {
-	size_t	pos;
-	size_t	neg;
-	size_t	num;
+	unsigned int		pos;
+	unsigned long long	num;
 
 	pos = 0;
-	neg = 1;
 	num = 0;
-	if (!is_number(str))
-		return (0);
-	if (str[pos] == '-')
-	{
-		neg *= -1;
-		pos++;
-	}
-	else if (str[pos] == '+')
-		pos++;
+
 	while (str[pos] >= '0' && str[pos] <= '9')
 	{
 		num = num * 10 + (str[pos] - '0');
 		pos++;
 	}
-	num *= neg;
 	if (num > INT_MAX)
-		return (0);
-	return (num);
+		return (-1);
+	return ((int)num);
 }
