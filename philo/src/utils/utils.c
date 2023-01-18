@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:50:13 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 19:49:49 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:20:55 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	philo_sleep(t_app *app, time_t time_sleeping)
 	while (get_time_in_ms() < wake_up)
 	{
 		if (check_simulation_stopped(app) == 1)
-			break ;
+			return ;
 		usleep(235);
 	}
 }
 
-void	sim_start_delay(time_t start_time)
+void	start_delay(time_t start_time)
 {
 	while (get_time_in_ms() < start_time)
 		continue ;

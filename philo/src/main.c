@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 20:52:07 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 01:00:29 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	start(t_app *app)
 	i = 0;
 	app->forks = create_mutex(app);
 	app->philos = create_philosopher(app, app->settings.num_philosophers);
-	//app->start_time = get_time_in_ms() + (app->settings.num_philosophers * 2 * 10);
+	app->start_time = get_time_in_ms() + (app->settings.num_philosophers * 2 * 10);
 	while (i < app->settings.num_philosophers)
 	{
 		if (pthread_create(&app->philos[i].thread, NULL, &philo_routine, &app->philos[i]) != 0)
@@ -67,11 +67,15 @@ int	main(int argc, char **argv)
 {
 	t_app	app;
 
-	atexit(ft_void);
+	//atexit(ft_void);
 	app.start_time = get_time_in_ms();
+	if (pthread_mutex_init(&app.write_lock, 0) != 0)
+		return (0);
 	init_parameter(&app.settings);
 	parsing(&app.settings, argc, argv);
-	validate_parsing(app.settings);
+	if(!validate_parsing(app.settings))
+		return (EXIT_SUCCESS);
+	printf("%d", app.settings.num_times_must_eat);
 	start(&app);
 	stop(&app);
 	return (EXIT_SUCCESS);

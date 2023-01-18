@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:27:29 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 20:53:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:58:24 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@
 # define MSG_MISSING_ARGUMENTS "Error: Missing arguments!"
 # define MSG_TOO_MANY_ARGUMENTS "Error: Too many arguments!"
 # define MSG_WRONG_ARGUMENT_TYPE "Error: Wrong argument type!"
+# define MSG_OVERFLOW_PHILOS "Error: invalid input!\
+(there must be between 1 and 250 philosophers)."
 
 typedef enum e_error
 {
 	TOO_MANY_ARGUMENTS = 2,
 	MISSING_ARGUMENTS = 3,
 	WRONG_ARGUMENT_TYPE = 4,
+	OVERFLOW_NUM_PHILOS = 5,
 }t_error;
 
 #endif

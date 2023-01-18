@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:26:17 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 20:48:33 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:21:05 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	*supervisor_routine(void *data)
 
 	app = ((t_app *) data);
 	set_stop_signal(app, 0);
-	//sim_start_delay(app->start_time);
+	start_delay(app->start_time);
 	while (1)
 	{
 		if (check_dead_and_full_meals(app) == 1)

@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:26:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/17 19:46:52 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/18 01:03:38 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	validate_parsing(t_settings settings)
 		printf("%s  %s\n", MSG_MISSING_ARGUMENTS, MSG_USAGE);
 	else if (settings.return_value == WRONG_ARGUMENT_TYPE)
 		printf("%s  %s\n", MSG_WRONG_ARGUMENT_TYPE, MSG_USAGE);
+	else if(settings.return_value == OVERFLOW_NUM_PHILOS)
+		printf("%s\n", MSG_OVERFLOW_PHILOS);
 	return (0);
 }
 
@@ -57,9 +59,16 @@ void	parsing(t_settings *settings, int argc, char **argv)
 				settings->return_value = WRONG_ARGUMENT_TYPE;
 				return ;
 			}
+			if(i == 1 && (ft_atoi(argv[i]) <= 0 || ft_atoi(argv[i]) > 250))
+			{
+				settings->return_value = OVERFLOW_NUM_PHILOS;
+				return ;
+			}
 			give_values(settings, i, ft_atoi(argv[i]));
 			i++;
 		}
+		if (i < 6)
+			give_values(settings, 5, -1);
 		settings->return_value = 1;
 	}
 }
