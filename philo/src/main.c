@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/19 00:39:12 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:22:26 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	start(t_app *app)
 
 	i = 0;
 	app->philos = create_philosopher(app, app->settings.num_philosophers);
-	if(!init_mutex(app))
+	if (!init_mutex(app))
 		return (0);
-	app->start_time = get_time_in_ms() + (app->settings.num_philosophers *20);
+	app->start_time = get_time_in_ms() + 50;
 	while (i < app->settings.num_philosophers)
 	{
 		if (pthread_create(&app->philos[i].thread, NULL, &philo_routine,
@@ -61,8 +61,8 @@ int	main(int argc, char **argv)
 	parsing(&app.settings, argc, argv);
 	if (!validate_parsing(app.settings))
 		return (EXIT_FAILURE);
-	if(!start(&app))
-		return(EXIT_FAILURE);
+	if (!start(&app))
+		return (EXIT_FAILURE);
 	stop(&app);
 	return (EXIT_SUCCESS);
 }

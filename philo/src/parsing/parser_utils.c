@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:58:45 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 23:17:41 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:00:36 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ft_atoi(char *str)
 
 	pos = 0;
 	num = 0;
-
 	while (str[pos] >= '0' && str[pos] <= '9')
 	{
 		num = num * 10 + (str[pos] - '0');

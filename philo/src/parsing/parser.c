@@ -6,7 +6,7 @@
 /*   By: cmorales <moralesrojascr@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 17:26:27 by cmorales          #+#    #+#             */
-/*   Updated: 2023/01/18 23:54:21 by cmorales         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:00:25 by cmorales         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	give_values(t_settings *settings, int key, int value)
 		settings->num_times_must_eat = value;
 }
 
-int parser(t_settings *settings, char **argv, int i)
+int	parser(t_settings *settings, char **argv, int i)
 {
 	if (!is_number(argv[i]))
 	{
@@ -42,24 +42,24 @@ int parser(t_settings *settings, char **argv, int i)
 	{
 		settings->return_value = OVERFLOW_NUM_INT;
 		return (0);
-	} 
+	}
 	return (1);
 }
 
 void	parsing(t_settings *settings, int argc, char **argv)
 {
+	int	i;
+
 	if (argc > 6)
 		settings->return_value = TOO_MANY_ARGUMENTS;
 	else if (argc < 5)
 		settings->return_value = MISSING_ARGUMENTS;
 	else
 	{
-		int	i;
-
 		i = 1;
 		while (argv[i])
 		{
-			if(!parser(settings,argv, i))
+			if (!parser(settings, argv, i))
 				return ;
 			give_values(settings, i, ft_atoi(argv[i]));
 			i++;
